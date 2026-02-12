@@ -9,26 +9,20 @@ const formData = ref({
   title: '',
   description: '',
   category: 'ทั่วไป'
-})
+}) 
 
 const saveData = async () => {
   try {
-    // ใช้ URL พอร์ต 5000 และเติม /projects ให้ถูกต้อง
-    const response = await axios.post('http://localhost:5000/projects', formData.value);
-    
+
+      const response = await axios.post('http://localhost:5000/projects', formData.value);
     if (response.status === 201 || response.status === 200) {
       alert('บันทึกข้อมูลสำเร็จ!');
-      
-      // ล้างข้อมูลเก่าในฟอร์มออก
       formData.value = { title: '', description: '', category: 'ทั่วไป' };
-      
-      // กลับหน้าหลัก
-      router.push('/'); 
+      router.push('/');  //กลับไปหน้าแรก
     }
   } catch (error) {
     console.error('Error:', error);
-    // แจ้งเตือนถ้า Server (NestJS) ไม่ได้รันอยู่
-    alert('บันทึกไม่ได้: กรุณาตรวจสอบว่ารัน NestJS (npm run start:dev) อยู่หรือไม่');
+    alert('บันทึกไม่สำเร็จ!');
   }
 }
 </script>
