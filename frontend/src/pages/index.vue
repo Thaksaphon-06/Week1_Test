@@ -14,18 +14,22 @@
           </v-card-item>
           <v-card-actions>
            <v-btn 
-            color="primary" 
-            variant="elevated" 
-            to="/create" 
+              color="primary" 
+              variant="elevated" 
+              block
+              prepend-icon="mdi-plus"
+              @click="goToCreate"
           >
             เพิ่มข้อมูลใหม่
           </v-btn>
           </v-card-actions>
            <v-card-actions>
            <v-btn 
-            color="primary" 
-            variant="elevated" 
-            to="/list" 
+           color="secondary" 
+              variant="tonal" 
+              block
+              prepend-icon="mdi-format-list-bulleted"
+              @click="goToList"
           >
             ข้อมูลของคุณ
           </v-btn>
@@ -35,3 +39,16 @@
     </v-row>
   </DefaultLayout>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToCreate = () => {
+  router.push('/create')
+}
+const goToList = () => {
+  router.push('/list')
+}
+</script>

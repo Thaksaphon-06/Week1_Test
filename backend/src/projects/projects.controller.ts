@@ -10,7 +10,7 @@ export class ProjectsController {
   @Post()
   create(@Body() createProjectDto: CreateProjectDto) {
     return this.projectsService.create(createProjectDto);
-  }
+  } 
 
   @Get()
   findAll() {
