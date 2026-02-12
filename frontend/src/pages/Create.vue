@@ -5,7 +5,6 @@ import axios from 'axios'
 
 const router = useRouter()
 
-// เตรียมข้อมูลฟอร์ม
 const formData = ref({
   title: '',
   description: '',
@@ -14,17 +13,22 @@ const formData = ref({
 
 const saveData = async () => {
   try {
-    // แก้ไข URL จาก /api/save เป็น /projects
+    // ใช้ URL พอร์ต 5000 และเติม /projects ให้ถูกต้อง
     const response = await axios.post('http://localhost:5000/projects', formData.value);
     
-    // NestJS จะคืนค่า 201 เมื่อสร้างข้อมูลสำเร็จ
     if (response.status === 201 || response.status === 200) {
-      alert('บันทึกข้อมูลเรียบร้อยแล้ว!');
+      alert('บันทึกข้อมูลสำเร็จ!');
+      
+      // ล้างข้อมูลเก่าในฟอร์มออก
+      formData.value = { title: '', description: '', category: 'ทั่วไป' };
+      
+      // กลับหน้าหลัก
       router.push('/'); 
     }
   } catch (error) {
-    console.error('เกิดข้อผิดพลาด:', error);
-    alert('ไม่สามารถเชื่อมต่อกับ Server ได้');
+    console.error('Error:', error);
+    // แจ้งเตือนถ้า Server (NestJS) ไม่ได้รันอยู่
+    alert('บันทึกไม่ได้: กรุณาตรวจสอบว่ารัน NestJS (npm run start:dev) อยู่หรือไม่');
   }
 }
 </script>
