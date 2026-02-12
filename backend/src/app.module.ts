@@ -8,12 +8,12 @@ import { Project } from './projects/entities/project.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mariadb', 
+      type: 'mariadb',
       host: 'localhost',
       port: 3306,
-      username: 'user',          
-      password: 'password',       
-      database: 'myprojectdb',   
+      username: 'user',
+      password: 'password',
+      database: 'myprojectdb',
       entities: [Project],
       autoLoadEntities: true,
       synchronize: true,          // ให้ NestJS สร้างตารางให้เองอัตโนมัติ
@@ -23,4 +23,4 @@ import { Project } from './projects/entities/project.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

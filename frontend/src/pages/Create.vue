@@ -12,12 +12,13 @@ const formData = ref({
   category: 'ทั่วไป'
 })
 
-// ฟังก์ชันบันทึกข้อมูล
 const saveData = async () => {
   try {
-    const response = await axios.post('http://localhost:5000/api/save', formData.value);
+    // แก้ไข URL จาก /api/save เป็น /projects
+    const response = await axios.post('http://localhost:5000/projects', formData.value);
     
-    if (response.status === 200) {
+    // NestJS จะคืนค่า 201 เมื่อสร้างข้อมูลสำเร็จ
+    if (response.status === 201 || response.status === 200) {
       alert('บันทึกข้อมูลเรียบร้อยแล้ว!');
       router.push('/'); 
     }
