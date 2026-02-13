@@ -6,7 +6,7 @@ import { Project } from './entities/project.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Project])], 
-  controllers: [ProjectsController],
+  controllers: [ProjectsController], 
   providers: [ProjectsService],
 })
 export class ProjectsModule {}

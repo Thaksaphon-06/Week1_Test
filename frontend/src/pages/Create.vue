@@ -11,6 +11,7 @@ const formData = ref({
   category: 'ทั่วไป'
 }) 
 
+//บันทึกข้อมูลไป backend
 const saveData = async () => {
   try {
 
@@ -18,7 +19,7 @@ const saveData = async () => {
     if (response.status === 201 || response.status === 200) {
       alert('บันทึกข้อมูลสำเร็จ!');
       formData.value = { title: '', description: '', category: 'ทั่วไป' };
-      router.push('/');  //กลับไปหน้าแรก
+      router.push('/');
     }
   } catch (error) {
     console.error('Error:', error);

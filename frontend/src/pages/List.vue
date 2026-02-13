@@ -2,15 +2,16 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-const projects = ref([])
+const projects = ref([]) 
 const loading = ref(true)
 
-
+// ฟังก์ชันดึงข้อมูลทั้งหมดจาก Backend
 const fetchProjects = async () => {
   try {
     loading.value = true
     // เรียกไปที่ Get findAll() ใน NestJS
     const response = await axios.get('http://localhost:5000/projects')
+    console.log('ข้อมูลที่ได้รับ:', response.data)
     projects.value = response.data
   } catch (error) {
     console.error('ไม่สามารถโหลดข้อมูลได้:', error)
@@ -20,7 +21,7 @@ const fetchProjects = async () => {
 }
 
 onMounted(() => {
-  fetchProjects() // เรียกใช้ฟังก์ชันดึงข้อมูลทั้งหมด
+  fetchProjects()
 })
 </script>
 
